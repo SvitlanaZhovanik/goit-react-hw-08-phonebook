@@ -1,16 +1,20 @@
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import FormAuth from './Form/FormAuth';
+import authOperations from 'redux/auth/authOperations';
 
 const Register = () => {
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleSubmitForm = (email, password, name) => {
+    dispatch(authOperations.register({ email, password, name }));
+  };
 
   return (
     <FormAuth
-      title="Register"
-      handleClick={}
+      title="Registration Page"
+      handleClick={handleSubmitForm}
       isRegister={true}
+      buttonName="Sign in"
     />
   );
 };

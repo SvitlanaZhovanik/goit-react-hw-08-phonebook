@@ -14,12 +14,21 @@ export default filterSlice.reducer;
 export const contactsApi = createApi({
   reducerPath: 'contactsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://6203d3e7c6d8b20017dc3298.mockapi.io',
+    baseUrl: 'https://connections-api.herokuapp.com',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ['Contacts'],
   endpoints: builder => ({
     fetchContacts: builder.query({
-      query: () => `/contacts`,
+      query: () => ({
+        url: `/contacts`,
+      }),
       providesTags: ['Contacts'],
     }),
     deleteContact: builder.mutation({
@@ -35,7 +44,7 @@ export const contactsApi = createApi({
         method: 'POST',
         body: {
           name,
-          phone: number,
+          number,
         },
       }),
       invalidatesTags: ['Contacts'],

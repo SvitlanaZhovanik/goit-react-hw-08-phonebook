@@ -1,7 +1,10 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import CircleLoader from 'react-spinners/CircleLoader';
+import ClockLoader from 'react-spinners/ClockLoader';
 import { css } from '@emotion/react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import authOperation from 'redux/auth/authOperations';
 
 const AppBar = lazy(() =>
   import('./components/AppBar' /* webpackChunkName: "appBar-page" */)
@@ -16,20 +19,28 @@ const RegisterPage = lazy(() =>
   import('./pages/RegisterPage' /* webpackChunkName: "register-page" */)
 );
 const ContactsPage = lazy(() =>
-  import('./pages/ContactsPage' /* webpackChunkName: "contacts-page" */)
+  import(
+    'pages/contactsPage/ContactsPage' /* webpackChunkName: "contacts-page" */
+  )
 );
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(authOperation.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <Suspense
       fallback={
-        <CircleLoader
+        <ClockLoader
           color={'#0d6efd'}
           css={css`
-            margin: 30% 45%;
+            margin: 5% 50%;
             display: block;
           `}
-          size={150}
+          size={100}
         />
       }
     >

@@ -1,10 +1,11 @@
-import { List } from './ContactsList.styled';
-import ContactItem from './ContactItem/ContactItem';
+import ContactItem from './ContactItem';
 import { useSelector } from 'react-redux';
 import { getFilter } from '../../redux/contacts/selectors';
-import PuffLoader from 'react-spinners/PuffLoader';
+import ClockLoader from 'react-spinners/ClockLoader';
 import PropTypes from 'prop-types';
 import { useDeleteContactMutation } from '../../redux/contacts/contactsSlice';
+import { ListGroup, Col } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 const ContactsList = ({ contacts, error, isFetching, isError }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
@@ -20,12 +21,13 @@ const ContactsList = ({ contacts, error, isFetching, isError }) => {
     deleteContact(event.currentTarget.id);
   };
   return (
-    <div>
-      {isFetching && <PuffLoader color="#32a1ce" />}
-      {isError && <p> {error.data} Sorry, something went wrong. Try later</p>}
+    <Col xs={12} lg={4}>
+      {isFetching && <ClockLoader color="#0d6efd" />}
+      {isError &&
+        toast.error(`${error.data} Sorry, something went wrong. Try later`)}
       {contacts && !isFetching && !isError && (
-        <List>
-          {contactsNormalize.map(({ id, name, phone }) => {
+        <ListGroup as="ul">
+          {contactsNormalize.map(({ id, name, number }) => {
             return (
               <ContactItem
                 onClick={handleDeleteContact}
@@ -33,13 +35,13 @@ const ContactsList = ({ contacts, error, isFetching, isError }) => {
                 key={id}
                 id={id}
                 name={name}
-                number={phone}
+                number={number}
               />
             );
           })}
-        </List>
+        </ListGroup>
       )}
-    </div>
+    </Col>
   );
 };
 

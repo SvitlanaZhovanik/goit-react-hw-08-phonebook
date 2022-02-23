@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 
-const FormAuth = ({ title, handleClick, isRegister }) => {
+const FormAuth = ({ title, buttonName, handleClick, isRegister }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -14,7 +14,8 @@ const FormAuth = ({ title, handleClick, isRegister }) => {
     setName('');
   };
   return (
-    <Container className="mt-4">
+    <Container className="mt-4 mb-5">
+      <h1 className="mb-5">{title}</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
@@ -47,7 +48,7 @@ const FormAuth = ({ title, handleClick, isRegister }) => {
           />
         </Form.Group>
         <Button variant="primary" type="submit">
-          {title}
+          {buttonName}
         </Button>
       </Form>
     </Container>
