@@ -1,9 +1,8 @@
-import { Title } from './ContactsPage.styled';
 import { useFetchContactsQuery } from 'redux/contacts/contactsSlice';
-import Section from 'components/Section/Section';
 import Filter from 'components/Filter';
 import ContactsList from 'components/ContactsList/ContactsList';
 import FormContact from 'components/Form/FormContact';
+import { ToastContainer } from 'react-toastify';
 import { Container } from 'react-bootstrap';
 
 export default function ContactsPage() {
@@ -11,10 +10,11 @@ export default function ContactsPage() {
   return (
     <Container>
       <div>
-        <Title>Phonebook</Title>
+        <h1>Phonebook</h1>
         <FormContact contacts={data} />
       </div>
-      <Section name="Contacts">
+      <Container className="mt-4">
+        <h2>Contacts</h2>
         <Filter />
         <ContactsList
           contacts={data}
@@ -22,7 +22,8 @@ export default function ContactsPage() {
           isFetching={isFetching}
           isError={isError}
         />
-      </Section>
+      </Container>
+      <ToastContainer position="top-center" />
     </Container>
   );
 }

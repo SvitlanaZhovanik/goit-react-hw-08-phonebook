@@ -1,6 +1,6 @@
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 
-export default function Error(message) {
+export default function Error({ message }) {
   switch (message) {
     case 400:
       toast.error('Login error. Please re-login');
@@ -12,7 +12,7 @@ export default function Error(message) {
       toast.error('Server is not available. Please retry your request later');
       break;
     default:
-      message = null;
+      toast.error(null);
   }
-  return <ToastContainer position="top-center" theme="colored" />;
+  return <ToastContainer position="top-center" autoClose={3000} limit={1} />;
 }

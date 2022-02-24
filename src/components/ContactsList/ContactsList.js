@@ -2,10 +2,10 @@ import ContactItem from './ContactItem';
 import { useSelector } from 'react-redux';
 import { getFilter } from '../../redux/contacts/selectors';
 import ClockLoader from 'react-spinners/ClockLoader';
-import PropTypes from 'prop-types';
 import { useDeleteContactMutation } from '../../redux/contacts/contactsSlice';
 import { ListGroup, Col } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 const ContactsList = ({ contacts, error, isFetching, isError }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();

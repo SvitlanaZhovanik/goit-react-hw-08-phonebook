@@ -17,7 +17,7 @@ const FormAuth = ({ title, buttonName, handleClick, isRegister }) => {
     <Container className="mt-4 mb-5">
       <h1 className="mb-5">{title}</h1>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3">
           <Form.Label>Email address</Form.Label>
           <Form.Control
             type="email"
@@ -27,7 +27,7 @@ const FormAuth = ({ title, buttonName, handleClick, isRegister }) => {
           />
         </Form.Group>
         {isRegister && (
-          <Form.Group className="mb-3" controlId="formBasicText">
+          <Form.Group className="mb-3">
             <Form.Label>Name</Form.Label>
             <Form.Control
               type="text"
@@ -38,7 +38,7 @@ const FormAuth = ({ title, buttonName, handleClick, isRegister }) => {
           </Form.Group>
         )}
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3">
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
