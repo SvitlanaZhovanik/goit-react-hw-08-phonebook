@@ -24,6 +24,8 @@ const FormAuth = ({ title, buttonName, handleClick, isRegister }) => {
             value={email}
             placeholder="Enter email"
             onChange={e => setEmail(e.target.value)}
+            pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$"
+            required
           />
         </Form.Group>
         {isRegister && (
@@ -34,6 +36,7 @@ const FormAuth = ({ title, buttonName, handleClick, isRegister }) => {
               value={name}
               placeholder="Your name"
               onChange={e => setName(e.target.value)}
+              required
             />
           </Form.Group>
         )}
@@ -45,6 +48,9 @@ const FormAuth = ({ title, buttonName, handleClick, isRegister }) => {
             value={password}
             placeholder="Password"
             onChange={e => setPassword(e.target.value)}
+            pattern="/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/"
+            title="The password must be at least 6 characters using numbers, Latin, lowercase and uppercase characters."
+            required
           />
         </Form.Group>
         <Button variant="primary" type="submit">
