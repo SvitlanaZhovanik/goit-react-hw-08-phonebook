@@ -48,7 +48,7 @@ const FormAuth = ({ title, buttonName, handleClick, isRegister }) => {
             value={password}
             placeholder="Password"
             onChange={e => setPassword(e.target.value)}
-            pattern="/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z!@#$%^&*]{6,}/"
+            pattern="/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}/"
             title="The password must be at least 6 characters using numbers, Latin, lowercase and uppercase characters."
             required
           />
