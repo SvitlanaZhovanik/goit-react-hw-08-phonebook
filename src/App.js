@@ -78,15 +78,15 @@ export default function App() {
               </PublicRoute>
             }
           />
-          <Route
-            path="*"
-            element={
-              <PublicRoute>
-                <Navigate to="/" />
-              </PublicRoute>
-            }
-          />
         </Route>
+        <Route
+          path="*"
+          element={
+            <PublicRoute>
+              <Navigate to="/" />
+            </PublicRoute>
+          }
+        />
       </Routes>
     </Suspense>
   );
